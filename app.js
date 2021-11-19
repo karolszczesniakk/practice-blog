@@ -14,8 +14,6 @@ const app = express();
 
 const posts =[];
 
-
-
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -45,7 +43,6 @@ app.get("/posts/:postName",(req,res)=>{
   let postName = _.lowerCase(req.params.postName);
   let contains = false;
 
-
   posts.forEach(post => {
 
     const storedTitle = _.lowerCase(post.title);
@@ -54,19 +51,12 @@ app.get("/posts/:postName",(req,res)=>{
     if(storedTitle === postName){
       console.log("Match found");
       res.render("post.ejs",{post: post});
-
-
     } else { 
       console.log("Match not found");
 
     }
-
-  
-
 })
 })
-
-
 
 app.post("/compose",(req,res)=>{
   const post = {
@@ -77,22 +67,8 @@ app.post("/compose",(req,res)=>{
   posts.push(post);
 
   res.redirect("/");
-  
 
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 app.listen(3000, function() {
   console.log("Server started on port 3000");
